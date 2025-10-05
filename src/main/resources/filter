@@ -1,0 +1,30 @@
+#!/bin/sh
+
+if test "x$1" = "x"; then
+   echo "Usage: filter mmdd"
+   exit
+fi
+
+day=$1
+
+rm -f ip.txt tc.txt
+
+echo " "
+for option in ip tc; do
+   echo "Writing $option.txt ..."
+   for server in `seq 101 140`; do
+      echo $server
+      java -Xmx600M -jar tomcatlogfilter.jar <logs$day/$server-accL$day.log >>$option.txt \
+         -$option                       \
+         69.91.128.0-69.91.255.255      \
+         128.95.0.0-128.95.104.247      \
+         128.95.105.0-128.95.255.255    \
+         128.208.0.0-128.208.255.255    \
+         140.142.0.0-140.142.255.255    \
+         173.250.128.0-173.250.255.255  \
+         198.48.64.0-198.48.95.255      \
+         205.175.96.0-205.175.127.255   \
+         216.186.67.0-216.186.71.255    \
+         216.186.83.0-216.186.83.255
+   done
+done
