@@ -1,3 +1,0 @@
-Things remaining...
-
-announce check or mate??

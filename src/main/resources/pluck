@@ -1,8 +1,0 @@
-#!/bin/sh
-
-if test "x$1" = "x"; then
-   echo "Usage: pluck file"
-   exit
-fi
-
-java -Xmx600M -jar tomcatlogfilter.jar -fields 5 7 10 <$1
